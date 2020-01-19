@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<!-- <div class="container"> -->
+    
+<div id="projo-body" style="overflow-x: hidden;">
+    <div style=padding-top:120px;  ></div>
+  <div class="row ">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <img height="80%" class="img-fluid" src="https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="pic">
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-transparent">
+        <div class="card-header">
+          <h3><b><u>Add your business</u></b></h3>
+        </div>
+        <div class="card-body">
+          <form action="{% url 'post' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-success" style="margin-left: 10%;">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+
+  </div>
+  <style>
+      #projo-body{
+     background-image: url("https://cdn5.vectorstock.com/i/thumb-large/65/89/white-pink-peach-copyspace-background-vector-8346589.jpg");
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: 90vh;
+   }
+   *{
+    font-family: Merienda;
+}
+   </style>
+  {% endblock %}
