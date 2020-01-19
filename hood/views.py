@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Profile,Neighborhood,Business,Posts
 from .forms import PostForm,BusinessForm,HoodForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -126,7 +128,14 @@ def search_results(request):
 
 
 
+@login_required(login_url="/accounts/login/")
+def logout_request(request):
+  '''
+  Function for logging out user
+  '''
 
+  logout(request)
+  return redirect('home')
     
 
 
