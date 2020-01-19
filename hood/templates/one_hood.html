@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div id="projo-body">
+        <div class="row">
+                <!-- <img style="margin-left: 5%;" class="col-md-4 img-fluid"  src=" {{one_hood.pic.url}} " alt=""> -->
+                
+                <div class="card col-md-6" style="width: 80rem;margin-left: 10%; ">
+                        <div class="card-body">
+                            <div class="card-title" style="text-align: center; margin-bottom: 3%;">   
+                            <h1>
+                             {{one_hood.hoodname}},{{one_hood.hoodlocation}}
+                            </h1>
+                        </div>
+                                <img src=" {{one_hood.pic.url}} " class="card-img-top img-fluid" alt="...">
+                            <h5 class="card-title"> <u> <h3>{{one_hood.hoodname}} Description</h3></u> </h5>
+                            <div class="card-text">{{one_hood.description}} <br>
+                                Health Facilities:
+                                <ul>
+                                    <li>
+                                            {{one_hood.health_info}}
+                                    </li>
+                                </ul>  
+                                {{one_hood.police_info}}
+            
+                            </div>
+            
+                            <div class="card-footer">
+                                <p>Occupants : {{hood_occupants.count}}</p>
+                                <a href=" {% url 'newhood' %} " class="btn btn-primary">Add a neighborhood.</a>
+                                <a href=" {% url 'business' %} " class="btn btn-primary">Add a business</a>
+                                <a href=" {% url 'post' %} " class="btn btn-primary">Post to this neighbourhood.</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    {% for business in businesses %}
+                    <div class="card " style="width: 50rem ; height: 350px !important; ">
+                            <h1> <b> <u>Businesses in {{one_hood.hoodname}} </u></b></p>
+                            <h1 class="card-title"> {{business.name}} </h1>
+                            <div class="card-body">
+                              <h5 class="card-title"> {{business.bizhood}} </h5>
+                              <h5 class="card-text"> {{business.bizdescription}} </h5>
+                             <div class="card-footer">
+                                 <h5>Owner: {{business.owner}} </h5>
+                                <h5>Contact Us through: {{business.bizemail}} </h5>
+                             </div>
+                            </div> 
+                        </div>                           
+                            {% endfor %}
+                            {% for post in posts  %}
+                            <div class="card">
+                            
+                            <h1> <b> <u>Posts for {{one_hood.hoodname}} </u></b></p>
+                                <h1 class="card-title"> {{post.title}} </h1>
+                                <div class="card-body">
+                                  <h5 class="card-title"> {{post.hood}} </h5>
+                                  <h5 class="card-text"> {{post.post}} </h5>
+                                 <div class="card-footer">
+                                     <h5>Posted_by: {{post.user}} </h5>
+                                    <h5>From{{post.hood}} </h5>
+                                 </div>
+                                </div> 
+                            </div>
+                            {% empty %}
+                            ********************
+                                {%endfor%}   
+                            </div>
+                        
+                </div>
+</div>
+  
+   <style>
+        #projo-body{
+          background-image: url("https://cdn5.vectorstock.com/i/thumb-large/65/89/white-pink-peach-copyspace-background-vector-8346589.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 90vh;
+          overflow: hidden;
+        }
+        *{
+    font-family: Merienda;
+   
+}
+
+        </style>
+
+{% endblock %}  
