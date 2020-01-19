@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def home(request):
     '''
     View function to render the home page
@@ -12,7 +13,7 @@ def home(request):
     all_hoods = Neighborhood.all_hoods()
     return render(request,'home.html',{'all_hoods':all_hoods})
     
-
+@login_required(login_url='/accounts/login/')
 def one_hood(request,id):
     '''
     View function to render details of one hood
@@ -23,6 +24,7 @@ def one_hood(request,id):
     posts = Posts.post_by_hood(hood_id = id)
     return render(request,'one_hood.html',{'one_hood':one_hood,'businesses':businesses,'hood_occupants':hood_occupants})
 
+@login_required(login_url='/accounts/login/')
 def post(request):
     '''
     Function that will upload a new post
@@ -40,7 +42,7 @@ def post(request):
         form = PostForm()
     return render(request,'new_post.html',{'form':form})
 
-
+@login_required(login_url='/accounts/login/')
 def business(request):
     '''
     Function to upload a new business
@@ -59,7 +61,7 @@ def business(request):
         form= BusinessForm()
     return render(request,'business.html',{'form':form})
 
-
+@login_required(login_url='/accounts/login/')
 def join_hood(request,id):
     '''
     Function for a user to join an neighbourhood
@@ -69,6 +71,8 @@ def join_hood(request,id):
     request.user.save()
     return redirect('home')
 
+
+@login_required(login_url='/accounts/login/')
 def leave_hood(request,id):
     hood = get_object_or_404(Neighborhood,id=id)
     request.user.neighborhood=None
@@ -76,6 +80,7 @@ def leave_hood(request,id):
     return redirect('home')
 
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
     '''
     Function to render a user's profile
@@ -83,6 +88,8 @@ def profile(request):
     all_posts = Posts.objects.filter(user = request.user)
     return render(request,'profile.html',{'all_posts':all_posts})
 
+
+@login_required(login_url='/accounts/login/')
 def new_hood(request):
     '''
     Function that will post a new neighborhood
@@ -100,6 +107,8 @@ def new_hood(request):
         form = HoodForm()
     return render(request,'new_hood.html',{'form':form})
 
+
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     '''
     View function for searching a business
