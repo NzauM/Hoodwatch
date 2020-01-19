@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div id="projo-body">
+    <div style=padding-top:120px;></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <h2 style="text-align:center"><u> {{user.username}}'s Profile </u> </h2>
+                    {% if user.Profile.profile_pic %}
+                    <img src=" {{user.Profile.profile_pic}} " alt="Profile picture">
+                    {% else %}
+                    <img src="https://c4.wallpaperflare.com/wallpaper/736/96/920/beautiful-unicorn-in-forest-fantasy-computer-desktop-wallpapers-hd-2560%C3%971600-wallpaper-preview.jpg"
+                        style="border-radius: 50%; margin-left: 30%;" class="img-fluid" width="250px" height="250px"
+                        alt="dp">
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <h3 style="text-align: center;">Username: {{user.username}} </h3>
+                        </h4>
+                        <p class="card-text">{% if user.profile.hood %}
+                            <h5 style="text-align: center;"><b>Neighborhood:</b> {{user.profile.hood}}</h5>
+                            {% else %}
+                            <p style="text-align: center;"> <b> Neighborhood:</b> You have not yet joined a
+                                neighborhood.</p>
+
+                            {% endif %}</p>
+                        <a href="/" class="btn btn-primary" style="margin-left: 40%;">Checkout hoods</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <h2 style="text-align:center">My Posts</h2>
+        <div class="row">
+
+            {% for post in all_posts %}
+            <div class="card col-md-6">
+                <h4 style="text-align: center;" class="card-title pictitle"> <u>{{post.title}}</u>  </h4>
+                <div class="card-body">
+                    <!-- <h4 class="card-title"> {{post.title}}</h4> -->
+                    <h4 class="card-text"> {{post.post}} </h4>
+                    <h5 class="card-footer"><b>Posted by:</b> {{post.user}}, from {{post.hood}}  </h5>
+                    
+
+                   
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+<style>
+        #projo-body {
+            background-image: url("https://cdn5.vectorstock.com/i/thumb-large/65/89/white-pink-peach-copyspace-background-vector-8346589.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 90vh;
+        }
+        *{
+    font-family: Merienda;
+}
+    </style>
+{% endblock %}
