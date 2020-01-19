@@ -81,7 +81,56 @@ class Profiletestcase(TestCase):
         profiles = Profile.objects.all()
         self.assertEqual(len(profiles,0))
 
-    
+class Businesstestcase(TestCase):
+    '''
+    Class to test the business class models
+    '''
+    def setUp(self):
+        self.bizna = Business(name='bizna',owner=1,bizhood=1,bizemail='biz@gmail.com',bizdescription='We sell everything')
+        self.bizna.save()
+
+    def tearDown(self):
+        '''
+        Will delete all test instances on completion
+        '''
+        Business.objects.all().delete()
+
+    def create_business_test(self):
+    '''
+    testcase to test instantiation of business class object
+    '''    
+    self.bizna.create_biz()
+    biznalist=Business.objects.all()
+    self.assertTrue(len(biznalist)==1)
+
+    def delete_business_test(self):
+        '''
+        testcase to delete a instance of business class
+        '''
+        self.bizna.save()
+        self.bizna.delete_biz()
+        biznalist=businesses.objects.all()
+        self.assertTrue(len(biznalist)==0)
+
+    def get_biz_test(self):
+    '''
+    testcase to get businesses for a certain hood
+    '''
+    self.bizna.save()
+    result=Business.search_biz('gas')  
+    self.assertTrue(len(found)==1)
+
+    def get_all_biz_test(self):
+        '''
+        testcase to get all business for the database
+        '''
+        self.bizna.save()
+        result=Business.all_biz()
+        self.assertEquals(len(results),1)
+
+
+
+
 
     
 
