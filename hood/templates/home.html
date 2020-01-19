@@ -3,79 +3,106 @@
 {% load bootstrap4 %}
 {% block content %}
 <!-- <h1>HOODS</h1> -->
-<div class="parallax">
+<div class="parallax  ">
     <div class="center-block">
-        <h1 style="font-family: Rock Salt;font-size: 400%;">
+        <h1 id="b1" >
             ~HoodWatch~
 
         </h1>
-        <h4 style="font-family: Merienda;font-size: 200%; ">
+        <h4 id="b2" >
             Be on the loop with everything in your neighborhood.
         </h4>
     </div>
 </div>
-<div class="section">
-    <h1 style="text-align: center; padding-top: 3%; margin-top: 0%;"  > <u>Featured Neighbourhoods</u> </h1>
-    {% for hood in all_hoods %}
-    <div class="card" style="width: 50rem; margin-left: 10%; margin-top: 5%;padding: 2%;">
-        <a href=" {%url 'onehood' hood.id %} ">
-        <h1 class="card-title" style="text-align: center;"> {{hood.hoodname}} </h1>
-        <img src=" {{hood.pic.url}} " class="card-img-top" alt="..."> </a>
-        <div class="card-text">
-            <p> {{hood.description}} </p>
-            <h4>Police: {{hood.police}} </h4>
-            <h4>Health: {{hood.health}} </h4> 
-        </div>
-        <div class="card-footer">
-            {% if request.user.hood_id == hood_id %}
-            <a href=" {%url 'leave-hood' hood.id%} ">
-            <button>
-                Join Hood
-            </button>
-        </a>
-            {% elif not request.user.hood %}
-            <a href=" {%url 'join-hood' hood.id%} ">
-            <button>
-                Leave Hood
-            </button>
-        </a>
-            {% endif %}
-        </div>
-    </div>
-    {% endfor %}
-    </div>
+<div class="section1">
+        <div class="section">
+                <h1 style="text-align: center; padding-top: 3%;"> <u>Featured Neighbourhoods</u> </h1>
+                <div class="row">
+                    {% for hood in all_hoods %}
+                    <div class="card col-md-4" style="width: 50rem; margin-left: 10%; margin-top: 5%;padding: 2%;">
+                        <a href=" {%url 'onehood' hood.id %} ">
+                            <h1 class="card-title" style="text-align: center;"> {{hood.hoodname}} </h1>
+                            <img src=" {{hood.pic.url}} " class="card-img-top img-fluid" alt="...">
+                        </a>
+                        <div class="card-text">
+                            <p> {{hood.description}} </p>
+                            <h4>Police: {{hood.police}} </h4>
+                            <h4>Health: {{hood.health}} </h4>
+                        </div>
+                        <div class="card-footer">
+                            {% if request.user.hood_id == hood_id %}
+                            <a href=" {%url 'leave-hood' hood.id%} ">
+                                <button>
+                                    Join Hood
+                                </button>
+                            </a>
+                            {% elif not request.user.hood %}
+                            <a href=" {%url 'join-hood' hood.id%} ">
+                                <button>
+                                    Leave Hood
+                                </button>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+</div>
 
 
-    
-        <style>
-            .parallax {
-  /* The image used */
-  background-image: url("https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 
-  /* Set a specific height */
-  min-height: 800px; 
+<style>
+    .parallax {
+        /* The image used */
+        background-image: url("https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+        /* Set a specific height */
+        min-height: 800px;
 
-.center-block{
-    align-content: center;
-    padding: 10%;
-    padding-left: 40%;
-}
-.section{
-    background-image: url("https://cdn5.vectorstock.com/i/thumb-large/65/89/white-pink-peach-copyspace-background-vector-8346589.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* height: 90vh; */
-}
-*{
-    font-family: Merienda;
-}
-        </style>
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .center-block {
+        align-content: center;
+        padding: 10%;
+        padding-left: 40%;
+    }
+
+    .section1{
+        background-image: url("https://ak9.picdn.net/shutterstock/videos/30948139/thumb/7.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #bi{
+        font-family: Rock Salt;
+        font-size: 400%;
+    }
+    #b2{
+        font-family: Merienda;
+        font-size: 200%
+    }
+
+    * {
+        font-family: Merienda;
+    }
+    @media only screen and (max-width: 800px) {
+  .center-block{
+      font-size: 100%;
+      padding-left: 10%;
+      padding:5%;
+  }
+  #b1,#b2{
+    font-size: 80%;
+  }
+  .parallax{
+      height: auto;
+  }
+  }
+</style>
 {% endblock %}
