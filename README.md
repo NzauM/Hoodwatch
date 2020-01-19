@@ -73,8 +73,11 @@ Open the application on your browser `127.0.0.1:8000`.
 ## Known Bugs  
 * There are no known bugs currently but pull requests are allowed incase you spot a bug  
   
-## Contact Information   
-If you have any question or contributions, please email me at [mikeycharlesm7@gmail.com]  
+## Support and contact details
+ For any issues ,contact at https://github.com/NzauM/Hoodwatch/issues <br>
+ Or for any pull requests, https://github.com/NzauM/Hoodwatch/pulls
+  Incase you need more clarification, feel free to send an email to: 
+Email: mercywaenu16@gmail.com
   
 ## License 
 
