@@ -77,7 +77,7 @@ class Profiletestcase(TestCase):
         Tests that a profile instance can be deleted succesfully
         '''
         self.profile.save()
-        self.hood.delete()
+        self.profile.delete()
         profiles = Profile.objects.all()
         self.assertEqual(len(profiles,0))
 
